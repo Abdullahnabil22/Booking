@@ -2,8 +2,9 @@ import ReviewCard from "@/Components/Cards/ReviewCard";
 import RatingBar from "@/Components/divs/RatingBar";
 import { categories, reviews } from "@/Static/Arrays";
 import React from "react";
+import Rating from "@mui/material/Rating";
 import { GoPlus } from "react-icons/go";
-import { Rating } from "@mui/material";
+
 import { FaDotCircle } from "react-icons/fa";
 
 const GuestReviews = () => {
