@@ -8,60 +8,79 @@ export default function Signin() {
   return (
     <>
       <NavPlain />
-      <div className="flex items-center justify-center">
-        <div className="bg-white p-8 rounded-lg  w-full max-w-sm ">
-          <h1 className="text-xl font-bold text-start mb-6">
-            Sign in or create an account
-          </h1>
-          <form className="space-y-4">
-            <div>
-              <label htmlFor="email" className="sr-only">
-                Email address
-              </label>
-              <input
-                id="email"
-                type="email"
-                placeholder="Enter your email address"
-                className="w-full p-2 border border-gray-300 rounded-lg focus:ring focus:ring-blue-500"
-              />
-            </div>
-            <button
-              type="submit"
-              className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700"
-            >
+      <div className="min-h-screen flex flex-col items-center">
+    
+      <nav className="w-full bg-blue-800 text-white flex items-center justify-between py-4 px-8">
+        <div className="flex items-center">
+          <h1 className="text-lg font-semibold">Booking.com</h1>
+        </div>
+        <div className="flex items-center space-x-6">
+          <img src="/gb.png" alt="Language" className="w-6 h-6" />
+          <FiHelpCircle className="w-6 h-6" />
+        </div>
+      </nav>
+
+      
+      <div className="flex-1 flex items-center justify-center">
+        <div className="w-full max-w-md p-6">
+          <h2 className="text-2xl font-bold mb-4">Sign in or create an account</h2>
+          <p className="text-gray-600 mb-6">You can sign in using your Booking.com account to access our services.</p>
+
+          
+          <form>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email address</label>
+            <input
+              type="email"
+              id="email"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+              placeholder="Enter your email address"
+            />
+            <button className="w-full bg-blue-600 text-white py-2 rounded mt-4 hover:bg-blue-700">
               Continue with email
             </button>
           </form>
 
-          <div className="my-6 text-center text-gray-500">
-            or use one of these options
+          
+          <div className="flex items-center justify-center my-4">
+            <span className="text-gray-500">or use one of these options</span>
+          </div>
+          <div className="flex justify-between space-x-4">
+           
+            <button
+              className="flex-1 bg-gray-100 p-3 rounded-lg flex justify-center items-center hover:bg-gray-200"
+              onClick={() => signIn('facebook')} 
+            >
+              <FaFacebook className="text-blue-600" size={24} />
+            </button>
+            
+            <button
+              className="flex-1 bg-gray-100 p-3 rounded-lg flex justify-center items-center hover:bg-gray-200"
+              onClick={() => signIn('google')} 
+            >
+              <FaGoogle className="text-red-600" size={24} />
+            </button>
+           
+            <button
+              className="flex-1 bg-gray-100 p-3 rounded-lg flex justify-center items-center hover:bg-gray-200"
+              onClick={() => signIn('apple')} 
+            >
+              <FaApple className="text-black" size={24} />
+            </button>
           </div>
 
-          <div className="flex justify-around">
-            <button className="p-4 bg-white rounded-lg border-2 border-grey-200">
-              <Image src={facebook} alt="Facebook" width={24} height={24} />
-            </button>
-            <button className="p-4 bg-white rounded-lg border-2 border-grey-200">
-              <Image src={google} alt="Google" width={24} height={24} />
-            </button>
-            <button className="p-4 bg-white rounded-lg border-2 border-grey-200">
-              <Image src={apple} alt="Apple" width={24} height={24} />
-            </button>
+    
+          <div className="text-center text-sm text-gray-600 mt-6">
+            By signing in or creating an account, you agree with our <a href="#" className="text-blue-600">Terms & conditions</a> and <a href="#" className="text-blue-600">Privacy statement</a>.
           </div>
-
-          <p className="mt-6 text-xs text-center text-gray-500">
-            By signing in or creating an account, you agree with our{" "}
-            <a href="#" className="text-blue-600">
-              Terms & Conditions
-            </a>{" "}
-            and{" "}
-            <a href="#" className="text-blue-600">
-              Privacy Statement
-            </a>
-            .
-          </p>
         </div>
       </div>
+
+ 
+      <footer className="w-full text-center text-sm py-4 border-t text-gray-500">
+        <p>All rights reserved.</p>
+        <p>Copyright &copy; 2006-2024 Booking.com™</p>
+      </footer>
+    </div>
     </>
   );
 }
