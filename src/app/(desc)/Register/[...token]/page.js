@@ -1,0 +1,92 @@
+"use client";
+import { useState } from "react";
+import axios from 'axios'; 
+import { useParams } from 'next/navigation'; // Import useParams
+
+const Register = () => {
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+  
+  const { token } = useParams(); // Use useParams to extract token
+
+  const handleResetPassword = async () => { 
+    const axiosInstance = axios.create({
+        baseURL: 'http://localhost:3000/user',
+    });
+
+    try {
+        const response = await axiosInstance.patch(`/resetPassword/${token}`, { 
+            password: password,
+            confirmPassword: confirmPassword 
+        });
+        console.log("pa",token.password)
+        console.log(password)
+        if (response.status === 200) {
+            setSuccessMessage("Your password has been reset successfully.");
+            setError("");
+        }
+    } catch (error) {
+        console.error("Error resetting password request:", error);
+        setError("An error occurred while resetting the password.");
+    }
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{10,}$/; // Regex for password validation
+
+    if (!passwordRegex.test(password)) {
+      setError("Password must be at least 10 characters long and include uppercase letters, lowercase letters, and numbers.");
+    } else if (password !== confirmPassword) {
+      setError("Passwords do not match."); // Check if passwords match
+    } else {
+      setError(""); // Clear error if passwords match and are valid
+      handleResetPassword(); // Call the reset password function
+    }
+  };
+
+  return (
+    <div className="max-w-md mx-auto p-4">
+      <h2 className="text-2xl font-bold mb-4">Reset Password</h2>
+      {successMessage && <p className="text-green-500">{successMessage}</p>}
+      {error && <p className="text-red-500">{error}</p>}
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label htmlFor="password" className="block text-sm font-medium text-gray-700">New Password</label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            placeholder="Enter your new password"
+            required 
+          />
+        </div>
+        <div>
+          <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">Confirm Password</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            placeholder="Confirm your new password"
+            required 
+          />
+        </div>
+        <button
+          type="submit"
+          className="w-full bg-indigo-600 text-white font-bold py-2 px-4 rounded-md hover:bg-indigo-700"
+        >
+          Reset Password
+        </button>
+      </form>
+    </div>
+  );
+};
+
+export default Register;

@@ -13,8 +13,8 @@ const Register = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [emailExists, setEmailExists] = useState(false);
   const router = useRouter();
- const [successMessage, setSuccessMessage] = useState("")
-
+  const [successMessage, setSuccessMessage] = useState("");
+ 
   useEffect(() => {
     const storedEmail = localStorage.getItem('email'); 
     if (storedEmail) {
@@ -57,10 +57,7 @@ const Register = () => {
         return;
     }
     
-    console.log("hamadapass", password);
-    
     try {
-        console.log("Registering user with email:", email, "and password:", password);
         const axiosInstance = axios.create({
             baseURL: 'http://localhost:3000/user', 
         });
@@ -90,6 +87,8 @@ const Register = () => {
     event.preventDefault();
 
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{10,}$/;
+    const storedEmail = localStorage.getItem('email');
+
     if (!passwordRegex.test(password)) {
       setError(
         "Password must be at least 10 characters long and include uppercase letters, lowercase letters, and numbers."
@@ -101,12 +100,12 @@ const Register = () => {
       console.log("Password is valid");
 
       if (emailExists) {
-        await loginUser(localStorage.getItem('email'), password);
+        await loginUser(storedEmail, password);
       } else {
-        await registerUser(localStorage.getItem('email'), password);
+        // const token = localStorage.getItem("token"); // Assuming token is needed
+        await registerUser(storedEmail, password);
       }
     }
-    await handleResetPassword(token);
   };
 
   const handleForgotPassword = async () => {
@@ -122,40 +121,16 @@ const Register = () => {
 
     try {
         const response = await axiosInstance.post('/forgotPassword', { email: storedEmail });
-        
-        console.log(response.data.message);
-        if(response.data.message=="Email sent successfully"){
+        if(response.data.message === "Email sent successfully"){
           setSuccessMessage("Check your email for the password reset link.");
-
-
         }
     } catch (error) {
         console.error("Error sending forgot password request:", error);
         setError("An error occurred while sending the password reset request.");
     }
   };
-  const handleResetPassword = async (token) => { // تأكد من تمرير التوكن كوسيلة
-    const axiosInstance = axios.create({
-        baseURL: 'http://localhost:3000/user',
-    });
 
-    try {
-        const response = await axiosInstance.patch(`/resetPassword/${token}`, { // تمرير التوكن في الرابط
-            password: newPassword, // تأكد من أن لديك newPassword في الحالة
-            confirmPassword: confirmPassword // تأكد من أن لديك confirmPassword في الحالة
-        });
-        
-        console.log(response.data.message);
-        if (response.data.message === "Password updated successfully") {
-            setSuccessMessage("Your password has been reset successfully.");
-            setError(""); // مسح أي أخطاء سابقة
-        }
-    } catch (error) {
-        console.error("Error resetting password request:", error);
-        setError("An error occurred while resetting the password.");
-    }
-};
-
+  
 
   return (
     <>
@@ -202,7 +177,7 @@ const Register = () => {
                       Forgot Password?
                     </button>
                     {error && <p className="text-red-500 text-sm">{error}</p>}
-{successMessage && <p className="text-green-500 text-sm">{successMessage}</p>}
+                    {successMessage && <p className="text-green-500 text-sm">{successMessage}</p>}
                   </div>
                 </div>
               </div>
@@ -261,27 +236,10 @@ const Register = () => {
           {error && <p className="text-red-500 text-sm">{error}</p>}
           <button
             type="submit"
-            className="w-full px-4 py-2 bg-blue-500 text-white font-semibold rounded-md shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500  hover:custom-blue"
+            className="w-full bg-indigo-600 text-white font-bold py-2 px-4 rounded-md hover:bg-indigo-700"
           >
-            Create account
+            {emailExists ? "Log In" : "Create Password"}
           </button>
-          <div className="text-center text-xs">
-            <span>
-              By signing in or creating an account, you agree with our{" "}
-            </span>
-            <a href="/terms" className="text-custom-color hover:underline">
-              Terms & Conditions
-            </a>
-            <span> and </span>
-            <a href="/privacy" className="text-custom-color hover:underline">
-              Privacy Statement
-            </a>
-
-            <div className="mt-2">
-              <p>All rights reserved.</p>
-              <p>Copyright (2006-2024) – Booking.com™</p>
-            </div>
-          </div>
         </form>
       </div>
     </>
