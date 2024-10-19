@@ -1,5 +1,6 @@
 import { questions } from "@/Static/Arrays";
 import FAQItem from "../divs/FAQItem";
+import SubHeading from "../Headings/SubHeading";
 
 const TravelersAsking = () => {
   const leftQuestions = questions.slice(0, Math.ceil(questions.length / 2));
@@ -7,13 +8,9 @@ const TravelersAsking = () => {
 
   return (
     <div className="max-w-6xl mx-auto p-4">
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-2xl font-bold">Travelers are asking</h2>
-        <button className="bg-blue-600 text-white px-3 py-2 rounded text-sm">
-          See availability
-        </button>
+      <div className="mb-4">
+        <SubHeading title="Travelers are asking" />
       </div>
-
       <div className="flex flex-wrap -mx-2 ">
         <div className="w-full md:w-2/3 px-2 ">
           <div className="flex flex-wrap -mx-2">

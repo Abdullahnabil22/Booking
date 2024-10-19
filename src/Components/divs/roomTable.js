@@ -5,6 +5,7 @@ import { GetHotelRooms } from "@/API/GET";
 import { MdBed } from "react-icons/md";
 import { IoMdCheckmark } from "react-icons/io";
 import { GoTag } from "react-icons/go";
+import Link from "next/link";
 
 const RoomTable = ({ hotel }) => {
   const [rooms, setRooms] = useState([]);
@@ -202,7 +203,7 @@ const RoomTable = ({ hotel }) => {
                   >
                     <div className="text-center">
                       <button className="bg-blue-600 text-white px-12 py-2 rounded w-full">
-                        I&apos;ll reserve
+                        <Link href="/book">I&apos;ll reserve</Link>
                       </button>
                     </div>
                   </td>

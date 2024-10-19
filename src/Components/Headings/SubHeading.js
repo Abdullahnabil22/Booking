@@ -7,7 +7,7 @@ function SubHeading({ title, description }) {
       </div>
       <div className="flex items-end">
         <button className="bg-[#006ce4] text-sm font-semibold text-white px-4 py-2 rounded-md">
-          See availability
+          <a href="#Apartment Info & Price">See availability</a>
         </button>
       </div>
     </section>

@@ -21,3 +21,9 @@ export async function GetHotelRooms(id) {
   const data = await res.json();
   return data;
 }
+
+export async function GetRoom(id) {
+  const res = await fetch(`http://localhost:3000/rooms/${id}`);
+  const data = await res.json();
+  return data;
+}

@@ -1,6 +1,8 @@
 import visa from "@/Public/Visa.png";
 import mastercard from "@/Public/masterCard.png";
+import paypal from "@/Public/Paypal.png";
 import Image from "next/image";
+
 function PaymentMethods({ icon: Icon, title }) {
   return (
     <>
@@ -12,6 +14,7 @@ function PaymentMethods({ icon: Icon, title }) {
         <div className="col-span-3 flex justify-start items-center gap-2">
           <Image src={visa} alt="visa" width={45} height={45} />
           <Image src={mastercard} alt="mastercard" width={45} height={45} />
+          <Image src={paypal} alt="paypal" width={45} height={45} />
           <span className="text-xs bg-[#008234] text-white rounded-md px-2 py-1">
             Cash
           </span>

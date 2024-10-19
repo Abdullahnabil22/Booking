@@ -14,8 +14,6 @@ import EndLinks from "@/Components/Footer/endLinks";
 import { GetHotelAmenities, GetHotelID } from "@/API/GET";
 import { IoAirplane } from "react-icons/io5";
 import { motion } from "framer-motion";
-import { FaPlane } from "react-icons/fa";
-import Loaders from "@/Components/divs/loader";
 import RoomTable from "@/Components/divs/roomTable";
 function Hotel() {
   const InfoTabs = [

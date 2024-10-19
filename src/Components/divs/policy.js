@@ -1,8 +1,6 @@
 "use client";
 import SubHeading from "../Headings/SubHeading";
 import TableRow from "./tableRow";
-import { useState, useEffect } from "react";
-import { GetHotelID } from "@/API/GET";
 import {
   HiArrowLeftEndOnRectangle,
   HiArrowRightEndOnRectangle,

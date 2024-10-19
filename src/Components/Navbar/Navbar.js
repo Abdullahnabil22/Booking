@@ -3,6 +3,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import ENFlag from "@/Public/ENFlag.png";
+import SaudiFlag from "@/Public/saudiArabia.png";
 import { MdMenu } from "react-icons/md";
 import { BsHouseAdd } from "react-icons/bs";
 import { FaRegUserCircle } from "react-icons/fa";
@@ -10,6 +11,18 @@ import { motion, AnimatePresence } from "framer-motion";
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLanguageModalOpen, setIsLanguageModalOpen] = useState(false);
+  const [currentLanguage, setCurrentLanguage] = useState("en");
+
+  const languages = [
+    { code: "en", name: "English", flag: ENFlag },
+    { code: "ar", name: "العربية", flag: SaudiFlag },
+  ];
+
+  const handleLanguageChange = (langCode) => {
+    setCurrentLanguage(langCode);
+    setIsLanguageModalOpen(false);
+  };
 
   return (
     <>
@@ -24,9 +37,14 @@ function Navbar() {
             <button className="mainColor navHover  px-3 py-2 rounded">
               EGP
             </button>
-            <button className="mainColor navHover px-3 py-2 rounded">
+            <button
+              className="mainColor navHover px-3 py-2 rounded"
+              onClick={() => setIsLanguageModalOpen(true)}
+            >
               <Image
-                src={ENFlag}
+                src={
+                  languages.find((lang) => lang.code === currentLanguage).flag
+                }
                 className="rounded-full"
                 alt="Language"
                 width={24}
@@ -91,15 +109,21 @@ function Navbar() {
                 <button className="   px-3 py-2 rounded">
                   EGP Egyptian Pound
                 </button>
-                <button className="  px-3 py-2 rounded flex items-center space-x-2">
+                <button
+                  className="px-3 py-2 rounded flex items-center space-x-2"
+                  onClick={() => setIsLanguageModalOpen(true)}
+                >
                   <Image
-                    src={ENFlag}
+                    src={
+                      languages.find((lang) => lang.code === currentLanguage)
+                        .flag
+                    }
                     className="rounded-full me-2"
                     alt="Language"
                     width={24}
                     height={24}
                   />{" "}
-                  English (US)
+                  {languages.find((lang) => lang.code === currentLanguage).name}
                 </button>
                 <button className="  px-3 py-2 rounded flex items-center space-x-2">
                   <BsHouseAdd className="text-2xl me-2" /> List your property
@@ -110,6 +134,51 @@ function Navbar() {
                 </button>
               </div>
             </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Language Modal */}
+      <AnimatePresence>
+        {isLanguageModalOpen && (
+          <motion.div
+            className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div
+              className="bg-white rounded-lg p-6 w-96"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+            >
+              <h2 className="text-2xl font-bold mb-4">Select Language</h2>
+              <div className="space-y-2">
+                {languages.map((lang) => (
+                  <button
+                    key={lang.code}
+                    className="flex items-center space-x-2 w-full p-2 hover:bg-gray-100 rounded"
+                    onClick={() => handleLanguageChange(lang.code)}
+                  >
+                    <Image
+                      src={lang.flag}
+                      alt={lang.name}
+                      width={24}
+                      height={24}
+                      className="rounded-full"
+                    />
+                    <span>{lang.name}</span>
+                  </button>
+                ))}
+              </div>
+              <button
+                className="mt-4 bg-[#003B95] px-4 py-2 rounded text-white hover:bg-[#003B95]/80 w-full"
+                onClick={() => setIsLanguageModalOpen(false)}
+              >
+                Close
+              </button>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

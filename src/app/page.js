@@ -33,7 +33,7 @@ import SearchBar from "@/Components/searchBar/searchBar";
 export default function Home() {
   return (
     <>
-       <Navbar />
+      <Navbar />
       <Header />
       <Main
         title="Find your next stay "
@@ -452,7 +452,7 @@ export default function Home() {
         </div>
       </section>
       <EndLinks />
-      <Footer /> 
+      <Footer />
     </>
   );
 }
