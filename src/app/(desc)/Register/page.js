@@ -32,7 +32,7 @@ const Register = () => {
       console.log("Email:", email);
       console.log("Response:", response);
 
-      if (response.data === "please enter valid email ") { 
+      if (response.data === "please enter valid email") { 
         console.log("Email not found");
         setEmailExists(false);
         if (password) {

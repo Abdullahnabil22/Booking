@@ -9,7 +9,7 @@ import NavPlain from "@/Components/Navbar/NavPlain";
 import { useState } from "react";
 import axios from 'axios'; 
 import { useRouter } from 'next/navigation';
-import ResetPassword from "../resetPassword/[token]/page";
+
 
 export default function Signin() {
   const [email, setEmail] = useState(""); 
@@ -29,7 +29,7 @@ export default function Signin() {
         console.log(email)
         console.log("res",response)
 
-        if (response.data=="please enter valid email ") { 
+        if (response.data=="please enter valid email") { 
           // localStorage.setItem('email', email);
             console.log("Email not found");
             
@@ -65,7 +65,7 @@ export default function Signin() {
                 placeholder="Enter your email address"
                 className="w-full p-2 border border-gray-300 rounded-lg focus:ring focus:ring-blue-500"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)} // Update email state on change
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <button
@@ -105,7 +105,7 @@ export default function Signin() {
           </p>
         </div>
       </div>
-      <ResetPassword/>
+   
     </>
   );
 }
