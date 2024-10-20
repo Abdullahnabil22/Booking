@@ -1,9 +1,11 @@
-"use client";
+"use client"; // Indicate that this is a client component
+
 import { useState, useEffect } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import NavPlain from "@/Components/Navbar/NavPlain";
 import axios from "axios"; 
 import { useRouter } from "next/navigation"; 
+import jwt_decode from 'jwt-decode'; // Correct import for jwt-decode
 
 const Register = () => {
   const [password, setPassword] = useState("");
@@ -56,6 +58,20 @@ const Register = () => {
     try {
       const response = await axios.post("http://localhost:3000/user/login", { email, password });
       console.log("User logged in:", response.data);
+      const token = response.data.token;
+      localStorage.setItem("token", token);
+      const decodedToken = jwt_decode(token); // Decode the token
+      const userRole = decodedToken.role; // Get the user role
+      console.log("userRole", userRole);
+      
+      // Redirect based on user role
+      if (userRole === 'admin') {
+        router.push('/home'); // Redirect to home for admin
+      } else if (userRole === 'user') {
+        router.push('/flight'); // Redirect to flight for regular users
+      } else {
+        console.error("Unknown role:", userRole);
+      }
     } catch (error) {
       setError("An error occurred while logging in. Please try again.");
     }
@@ -126,7 +142,15 @@ const Register = () => {
 
           <div>
             <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-              {emailExists ? "Password" : "Create Password"}
+              {emailExists ? (
+                <>
+                  <p className="font-bold">Enter your password</p>
+                  <p className="pb-3">Please enter your Booking.com password for</p>
+                  <p>password</p>
+                </>
+              ) : (
+                "Create Password"
+              )}
             </label>
             <div className="relative">
               <input

@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import axios from 'axios'; 
-import { useParams } from 'next/navigation'; // Import useParams
+import { useParams } from 'next/navigation'; 
 
 const Register = () => {
   const [password, setPassword] = useState("");
@@ -9,18 +9,19 @@ const Register = () => {
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   
-  const { token } = useParams(); // Use useParams to extract token
+  const { token } = useParams(); 
 
   const handleResetPassword = async () => { 
     const axiosInstance = axios.create({
-        baseURL: 'http://localhost:3000/user',
+      baseURL: 'http://localhost:3000',
     });
 
     try {
-        const response = await axiosInstance.patch(`/resetPassword/${token}`, { 
-            password: password,
-            confirmPassword: confirmPassword 
-        });
+      const response = await axiosInstance.patch(`/user/resetPassword/${token}`, {
+        password: password,
+        confirmPassword: confirmPassword,
+    });
+  
         console.log("pa",token.password)
         console.log(password)
         if (response.status === 200) {
@@ -36,15 +37,15 @@ const Register = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{10,}$/; // Regex for password validation
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{10,}$/;
 
     if (!passwordRegex.test(password)) {
       setError("Password must be at least 10 characters long and include uppercase letters, lowercase letters, and numbers.");
     } else if (password !== confirmPassword) {
-      setError("Passwords do not match."); // Check if passwords match
+      setError("Passwords do not match."); 
     } else {
-      setError(""); // Clear error if passwords match and are valid
-      handleResetPassword(); // Call the reset password function
+      setError(""); 
+      handleResetPassword(); 
     }
   };
 

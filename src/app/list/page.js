@@ -1,4 +1,6 @@
+"use client";
 import Image from "next/image";
+
 import {
   Accordion,
   AccordionContent,
@@ -6,6 +8,7 @@ import {
   AccordionTrigger,
 } from "@/Components/ui/accordion";
 import Link from "next/link";
+import singinlist from "../singinlist/page";
 
 export default function List() {
   return (
@@ -60,9 +63,15 @@ export default function List() {
           <li>Choose between instant bookings and booking requests</li>
           <li>We handle payments for you</li>
         </ul>
+        <Link href="/singinlist">
         <button className="bg-blue-600 text-white py-2 px-4 rounded-lg w-full">
-          Get started now
-        </button>
+      
+      Get started now
+
+    </button>
+   
+        </Link>
+       
         <p className="mt-4 text-sm ">
           Already started registration?{" "}
           <a href="#" className="underline">
