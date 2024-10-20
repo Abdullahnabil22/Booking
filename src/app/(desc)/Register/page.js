@@ -1,11 +1,11 @@
-"use client"; // Indicate that this is a client component
+"use client"; 
 
 import { useState, useEffect } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import NavPlain from "@/Components/Navbar/NavPlain";
 import axios from "axios"; 
 import { useRouter } from "next/navigation"; 
-import jwt_decode from 'jwt-decode'; // Correct import for jwt-decode
+import jwt_decode from 'jwt-decode';
 
 const Register = () => {
   const [password, setPassword] = useState("");
@@ -55,20 +55,36 @@ const Register = () => {
   };
 
   const loginUser = async (email, password) => {
+    console.log("jwt_decode",jwt_decode)
     try {
       const response = await axios.post("http://localhost:3000/user/login", { email, password });
+      console.log("respo",response)
       console.log("User logged in:", response.data);
-      const token = response.data.token;
-      localStorage.setItem("token", token);
-      const decodedToken = jwt_decode(token); // Decode the token
-      const userRole = decodedToken.role; // Get the user role
+      const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhYmFiYWxhYTE3NjE5OTlAZ21haWwuY29tIiwiaWQiOiI2NzBlNDM4MGI3MjAyOTIwODM0MWEyZTUiLCJyb2xlIjoidXNlciIsInVzZXJuYW1lIjoicmFiYWIiLCJpYXQiOjE3Mjk0NDQzMzd9.S3u5KCzmVmi0QZlxfO01LgA8MHM0aoXxHZTwGgCSmEU";
+      // console.log("token",token)
+      // localStorage.setItem("token", response.data);
+      // console.log("role");
+      try {
+        const decodedToken = jwt_decode(token); // Decode the token
+        console.log("Decoded Token:", decodedToken); // Log the entire decoded token
+      
+        const userRole = decodedToken.role; // Access the role
+        console.log("userRole", userRole); // Log the user role
+      
+        if (!userRole) {
+          console.error("Role not found in the token.");
+        }
+      } catch (error) {
+        console.error("Error decoding token:", error); // Log any errors that occur during decoding
+      }
+      
+      const userRole = decodedToken.role; 
       console.log("userRole", userRole);
       
-      // Redirect based on user role
       if (userRole === 'admin') {
-        router.push('/home'); // Redirect to home for admin
+        router.push('/home'); 
       } else if (userRole === 'user') {
-        router.push('/flight'); // Redirect to flight for regular users
+        router.push('/flight');
       } else {
         console.error("Unknown role:", userRole);
       }
