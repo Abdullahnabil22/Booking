@@ -1,84 +1,83 @@
 "use client";
-import { useState } from "react";
-import "./page.css";
-// import PhoneInput from 'react-phone-input-2'
-// import "react-phone-input-2/lib/style.css";
-import Link from "next/link";
+
+import { useState } from 'react';
 import NavPlain from "@/Components/Navbar/NavPlain";
 
-const ContactForm = () => {
-  const [firstName, setFirstName] = useState(""); // تأكد من عدم وجود مشكلة في تعريف useState
-  const [lastName, setLastName] = useState(""); // نفس الأمر هنا
-  const [phoneNumber, setPhoneNumber] = useState("+20"); // يجب أن يتم تعريف كل الحقول بشكل صحيح
+import axios from "axios";
+
+const ContactDetails = () => {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
 
   const handleSubmit = (e) => {
-    // إزالة النوعية (Type Annotations) لأنها تستخدم في TypeScript فقط
     e.preventDefault();
     console.log({ firstName, lastName, phoneNumber });
   };
 
+
   return (
-    <>
+    <div>
       <NavPlain />
-      <div className="max-w-md mx-auto bg-white  rounded-lg p-6">
-        <h2 className=" font-bold ">Contact details</h2>
-        <p className="text-sm text-gray-600 mb-4 Save_10">
-          Your full name and phone number are needed to ensure the security of
-          your account.
-        </p>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label style={{ fontSize: "small" }}>First name</label>
-            <input
-              type="text"
-              className="mt-1 block w-100 p-2 border border-gray-300 input"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-              required
-            />
-          </div>
-
-          <div className="mb-4">
-            <label className="block text-sm text-gray-700 ">Last name</label>
-            <input
-              type="text"
-              className=" block w-150 p-2 border border-gray-300 input"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-              required
-            />
-          </div>
-
-          <div className="mb-4">
-            <label className="block text-sm text-gray-700 ">Phone number</label>
-            <div className="flex items-center space-x-2 input">
-              {/*            
-            <PhoneInput 
-              inputProps={{
-                className:'Phone',
-                name: 'phone',
-                required: true,
-                  autoFocus: true
-             }}
-             /> */}
+      <div className="flex items-center justify-center min-h-screen ">
+        <div className=" p-6 shadow-md w-96">
+          <h2 className="text-l font-bold mb-4">Contact details</h2>
+          <h6 className="mb-4">Your full name and phone number are needed to ensure the security of your Booking.com account.</h6>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">First name</label>
+              <input
+                type="text"
+                id="firstName"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                placeholder="Enter your first name"
+                required
+              />
             </div>
-          </div>
-          <p className="text-sm text-gray-600 mb-4 Save_10">
-            Your full name and phone number are needed to ensure the security of
-            your account.
-          </p>
-          <button
-            type="submit"
-            className="block w-60 p-2 bg-blue-600 text-white font-bold  hover:bg-blue-700"
-          >
-            <Link href="/">Next</Link>
-          </button>
-        </form>
+            <div>
+              <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">Last name</label>
+              <input
+                type="text"
+                id="lastName"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                placeholder="Enter your last name"
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700">Phone number</label>
+              <div className="flex items-center">
+                <select className="border border-gray-300 rounded-l-md px-3 py-2 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                  <option value="+20">+20</option>
+                  {/* Add more country codes as needed */}
+                </select>
+                <input
+                  type="tel"
+                  id="phoneNumber"
+                  value={phoneNumber}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-r-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                  placeholder="Enter your phone number"
+                  required
+                />
+              </div>
+            </div>
+            <button
+              type="submit"
+              className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600"
+            >
+              Next
+            </button>
+          </form>
+          <p className="mt-4 text-sm text-gray-500">By signing in or creating an account, you agree with our <a href="#" className="text-blue-500">Terms & Conditions</a> and <a href="#" className="text-blue-500">Privacy Statement</a>.</p>
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 
-export default ContactForm;
-
-//ًصفحة contact
+export default ContactDetails;

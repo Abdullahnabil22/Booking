@@ -70,37 +70,28 @@ const Register = () => {
       });
       console.log("respo", response);
       console.log("User logged in:", response.data);
-      const token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhYmFiYWxhYTE3NjE5OTlAZ21haWwuY29tIiwiaWQiOiI2NzBlNDM4MGI3MjAyOTIwODM0MWEyZTUiLCJyb2xlIjoidXNlciIsInVzZXJuYW1lIjoicmFiYWIiLCJpYXQiOjE3Mjk0NDQzMzd9.S3u5KCzmVmi0QZlxfO01LgA8MHM0aoXxHZTwGgCSmEU";
-      // console.log("token",token)
-      // localStorage.setItem("token", response.data);
-      // console.log("role");
+      const token = response.data; // Assuming the token is in response.data
+
       try {
-        const decodedToken = jwtDecode(token); // Use jwtDecode instead of jwt_decode
+        const decodedToken = jwtDecode(token); // Decode the token
         console.log("Decoded Token:", decodedToken); // Log the entire decoded token
 
         const userRole = decodedToken.role; // Access the role
         console.log("userRole", userRole); // Log the user role
 
-        if (!userRole) {
-          console.error("Role not found in the token.");
+        if (userRole === "owner") {
+          router.push("/en/Signin");
+        } else if (userRole === "user") {
+          console.log("hamadarole");
+          router.push("/en/");
+        } else {
+          console.error("Unknown role:", userRole);
         }
       } catch (error) {
-        console.error("Error decoding token:", error); // Log any errors that occur during decoding
-      }
-
-      const userRole = decodedToken.role;
-      console.log("userRole", userRole);
-
-      if (userRole === "admin") {
-        router.push("/home");
-      } else if (userRole === "user") {
-        router.push("/flight");
-      } else {
-        console.error("Unknown role:", userRole);
+        console.error("Error decoding token:", error);
       }
     } catch (error) {
-      setError("An error occurred while logging in. Please try again.");
+      console.log(error);
     }
   };
 
@@ -122,6 +113,7 @@ const Register = () => {
       } else {
         await registerUser(storedEmail, password, username);
       }
+
     }
   };
 

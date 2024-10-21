@@ -35,9 +35,11 @@ export default function List() {
             <span className="text-sm">Already a partner?</span>
 
             {/* Sign in button */}
+            <Link href="/en/signlist">
             <button className="border border-white py-1 px-3 rounded text-sm hover:bg-white hover:text-blue-900 transition-colors">
               Sign in
             </button>
+            </Link>
 
             {/* Help button */}
             <button className="bg-blue-500 text-white py-1 px-3 rounded text-sm hover:bg-blue-600 transition-colors">

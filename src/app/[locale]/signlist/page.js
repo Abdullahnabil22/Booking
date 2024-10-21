@@ -24,11 +24,11 @@ export default function Signlist() {
 
       if (response.data === "please enter valid email") {
         console.log("Email not found");
-        router.push("/contact-details");
+        router.push("/en/contact-details");
       } else {
         console.log("Email found");
         localStorage.setItem("email", email);
-        router.push("/Register"); // Redirect to register if email found
+        router.push("/en/Register"); // Redirect to register if email found
       }
     } catch (error) {
       console.error("Error checking email:", error);
@@ -61,12 +61,14 @@ export default function Signlist() {
                 required
               />
             </div>
+          
             <button
               type="submit" // Ensure this is set to "submit"
               className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-200"
             >
               Continue
             </button>
+          
           </form>
 
           <div className="my-6 text-center text-gray-500">
@@ -82,7 +84,7 @@ export default function Signlist() {
           </div>
 
           <div className="text-center">
-          <Link href="/en/  Signin">
+          <Link href="/en/Signin">
             <button className="w-full border border-blue-600 text-blue-600 py-2 rounded-lg hover:bg-blue-600 hover:text-white transition duration-200">
               Sign in
             </button>
