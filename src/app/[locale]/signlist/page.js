@@ -25,11 +25,13 @@ export default function Signlist() {
       if (response.data === "please enter valid email") {
         console.log("Email not found");
         router.push("/en/contact-details");
+        
       } else {
         console.log("Email found");
         localStorage.setItem("email", email);
-        router.push("/en/Register"); // Redirect to register if email found
+        router.push("/en/Register"); 
       }
+      localStorage.setItem("email",email)
     } catch (error) {
       console.error("Error checking email:", error);
     }
