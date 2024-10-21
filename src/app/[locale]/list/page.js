@@ -62,7 +62,7 @@ export default function List() {
           <li>Choose between instant bookings and booking requests</li>
           <li>We handle payments for you</li>
         </ul>
-        <Link href="/singinlist">
+        <Link href="/en/signlist">
           <button className="bg-blue-600 text-white py-2 px-4 rounded-lg w-full">
             Get started now
           </button>

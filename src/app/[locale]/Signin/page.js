@@ -32,7 +32,7 @@ export default function Signin() {
         console.log("Email  found");
       }
       localStorage.setItem("email", email);
-      router.push("/Register");
+      router.push("/en/Register");
     } catch (error) {
       console.error("Error checking email:", error);
     }
