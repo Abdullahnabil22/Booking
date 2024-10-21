@@ -5,7 +5,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import NavPlain from "@/Components/Navbar/NavPlain";
 import axios from "axios"; 
 import { useRouter } from "next/navigation"; 
-import jwt_decode from 'jwt-decode';
+import jwt_decode from "jwt-decode";
 
 const Register = () => {
   const [password, setPassword] = useState("");
