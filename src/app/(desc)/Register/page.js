@@ -80,10 +80,10 @@ const Register = () => {
         console.log("userRole", userRole); // Log the user role
 
         if (userRole === "owner") {
-          router.push("/en/Signin");
+          router.push(" http://localhost:4200/");
         } else if (userRole === "user") {
           console.log("hamadarole");
-          router.push("/en/");
+          router.push("/");
         } else {
           console.error("Unknown role:", userRole);
         }
@@ -248,7 +248,7 @@ const Register = () => {
 
           <button
             type="submit"
-            
+
             className="w-full bg-blue-500 text-white py-2 px-4 rounded-md"
           >
             {emailExists ? "Log In" : "Register"}
