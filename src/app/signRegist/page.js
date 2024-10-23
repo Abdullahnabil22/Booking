@@ -9,7 +9,11 @@ import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
-export default function Signin() {
+
+
+
+export default function SignRegist() {
+
   const [email, setEmail] = useState("");
   const router = useRouter();
 
@@ -28,12 +32,16 @@ export default function Signin() {
       if (response.data == "please enter valid email") {
    
         console.log("Email not found");
-        window.alert("please enter vaild email");
+  
+
+        router.push("/Register");
       } else {
         console.log("Email  found");
-        router.push("/Register");
+        window.alert("The email is already in use");
+      
+        
       }
-      // localStorage.setItem("email", email);
+      localStorage.setItem("email", email);
     } catch (error) {
       console.error("Error checking email:", error);
     }
@@ -44,8 +52,8 @@ export default function Signin() {
       <NavPlain />
       <div className="flex items-center justify-center">
         <div className="bg-white p-8 rounded-lg w-full max-w-sm">
-          <h1 className="text-xl font-bold text-start mb-6 text-center justify-center">
-            Sign in 
+          <h1 className="text-xl font-bold text-start mb-6">
+            Sign in or create an account
           </h1>
           <form className="space-y-4" onSubmit={checkemail}>
             <div>

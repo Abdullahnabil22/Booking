@@ -24,12 +24,20 @@ export default function Signlist() {
 
       if (response.data === "please enter valid email") {
         console.log("Email not found");
+<<<<<<< Updated upstream:src/app/[locale]/signlist/page.js
         router.push("/en/contact-details");
         
       } else {
         console.log("Email found");
         localStorage.setItem("email", email);
         router.push("/en/Register"); 
+=======
+        router.push("/contact-details");
+      } else {
+        console.log("Email found");
+        localStorage.setItem("email", email);
+        router.push("/Register");
+>>>>>>> Stashed changes:src/app/signlist/page.js
       }
       localStorage.setItem("email",email)
     } catch (error) {

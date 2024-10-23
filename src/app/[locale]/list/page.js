@@ -31,7 +31,7 @@ export default function List() {
               />
             </div>
 
-            {/* Already a partner text */}
+            <Link href="/Signin">
             <span className="text-sm">Already a partner?</span>
 
             {/* Sign in button */}
@@ -64,7 +64,11 @@ export default function List() {
           <li>Choose between instant bookings and booking requests</li>
           <li>We handle payments for you</li>
         </ul>
+<<<<<<< Updated upstream:src/app/[locale]/list/page.js
         <Link href="/en/signlist">
+=======
+        <Link href="/signlist">
+>>>>>>> Stashed changes:src/app/list/page.js
           <button className="bg-blue-600 text-white py-2 px-4 rounded-lg w-full">
             Get started now
           </button>

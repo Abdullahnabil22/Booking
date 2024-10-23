@@ -1,7 +1,12 @@
 "use client";
 import { useState } from "react";
+<<<<<<< Updated upstream:src/app/[locale]/(desc)/Register/[...token]/page.js
 import axios from 'axios'; 
 import { useParams } from 'next/navigation'; 
+=======
+import axios from "axios";
+import { useParams, useRouter } from "next/navigation";
+>>>>>>> Stashed changes:src/app/(desc)/Register/[...token]/page.js
 
 const Register = () => {
   const [password, setPassword] = useState("");
@@ -11,7 +16,14 @@ const Register = () => {
   
   const { token } = useParams(); 
 
+<<<<<<< Updated upstream:src/app/[locale]/(desc)/Register/[...token]/page.js
   const handleResetPassword = async () => { 
+=======
+  const { token } = useParams();
+  const router = useRouter(); // Move useRouter hook here
+
+  const handleResetPassword = async () => {
+>>>>>>> Stashed changes:src/app/(desc)/Register/[...token]/page.js
     const axiosInstance = axios.create({
       baseURL: 'http://localhost:3000',
     });
@@ -28,9 +40,27 @@ const Register = () => {
             setSuccessMessage("Your password has been reset successfully.");
             setError("");
         }
+<<<<<<< Updated upstream:src/app/[locale]/(desc)/Register/[...token]/page.js
     } catch (error) {
         console.error("Error resetting password request:", error);
         setError("An error occurred while resetting the password.");
+=======
+      );
+
+      if (response.status === 200) {
+        setSuccessMessage("Your password has been reset successfully.");
+        window.alert("Your password has been reset successfully.");
+        router.push("/Signin");
+      }
+    } catch (error) {
+      // Improved error handling
+      if (error.response && error.response.data && error.response.data.message) {
+        setError(error.response.data.message);
+      } else {
+        setError("An error occurred while resetting the password.");
+      }
+      console.error("Error resetting password:", error);
+>>>>>>> Stashed changes:src/app/(desc)/Register/[...token]/page.js
     }
   };
 

@@ -54,9 +54,7 @@ const Register = () => {
         email,
         password,
         username,
-        role:"user"
       });
-      router.push("/Signin");
       console.log("User registered:", response.data);
     } catch (error) {
       setError("An error occurred while registering. Please try again.");
@@ -64,21 +62,28 @@ const Register = () => {
   };
 
   const loginUser = async (email, password) => {
+    console.log("jwt_decode", jwtDecode);
     try {
       const response = await axios.post("http://localhost:3000/user/login", {
         email,
         password,
       });
-      const token = response.data;
+      console.log("respo", response);
+      console.log("User logged in:", response.data);
+      const token = response.data; // Assuming the token is in response.data
 
       try {
-        const decodedToken = jwtDecode(token);
-        const userRole = decodedToken.role;
+        const decodedToken = jwtDecode(token); // Decode the token
+        console.log("Decoded Token:", decodedToken); // Log the entire decoded token
+
+        const userRole = decodedToken.role; // Access the role
+        console.log("userRole", userRole); // Log the user role
 
         if (userRole === "owner") {
-          router.push("/http://localhost:4200/");
+          router.push("/en/Signin");
         } else if (userRole === "user") {
-          router.push("/");
+          console.log("hamadarole");
+          router.push("/en/");
         } else {
           console.error("Unknown role:", userRole);
         }
@@ -108,7 +113,6 @@ const Register = () => {
       } else {
         await registerUser(storedEmail, password, username);
       }
-
     }
   };
 
@@ -172,8 +176,9 @@ const Register = () => {
                 <>
                   <p className="font-bold">Enter your password</p>
                   <p className="pb-3">
-                    Please enter your password for the registered email.
+                    Please enter your Booking.com password for
                   </p>
+                  <p>password</p>
                 </>
               ) : (
                 "Create Password"
@@ -243,6 +248,7 @@ const Register = () => {
 
           <button
             type="submit"
+            
             className="w-full bg-blue-500 text-white py-2 px-4 rounded-md"
           >
             {emailExists ? "Log In" : "Register"}
