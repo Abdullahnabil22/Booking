@@ -1,10 +1,11 @@
 "use client";
 import { useAuth } from "@/context/user";
-import { useState } from "react"; 
+import { useState } from "react";
 import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import ENFlag from "@/Public/ENFlag.png";
 import SaudiFlag from "@/Public/saudiArabia.png";
+
 import { MdMenu } from "react-icons/md";
 import { BsHouseAdd } from "react-icons/bs";
 import { FaRegUserCircle } from "react-icons/fa";
@@ -12,13 +13,15 @@ import { motion, AnimatePresence } from "framer-motion";
 import Cookies from "js-cookie";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import Avatar from "@mui/material/Avatar";
+
 
 function Navbar() {
   const locale = useLocale();
-  const { email, logout } = useAuth(); 
+  const { email, logout } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLanguageModalOpen, setIsLanguageModalOpen] = useState(false);
-
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const t = useTranslations("Navbar");
   const pathname = usePathname();
 
@@ -31,6 +34,10 @@ function Navbar() {
     Cookies.set("NEXT_LOCALE", langCode);
     setIsLanguageModalOpen(false);
     window.location.reload();
+  };
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
   };
 
   return (
@@ -46,9 +53,7 @@ function Navbar() {
 
           {/* Desktop menu */}
           <div className="hidden md:flex space-x-4">
-            <button className="mainColor navHover  px-3 py-2 rounded">
-              EGP
-            </button>
+            <button className="mainColor navHover px-3 py-2 rounded">EGP</button>
             <button
               className="mainColor navHover px-3 py-2 rounded"
               onClick={() => setIsLanguageModalOpen(true)}
@@ -61,30 +66,65 @@ function Navbar() {
                 height={24}
               />
             </button>
-            <button className="mainColor navHover px-3 py-2 rounded">
-              <span className="infolink"></span>
-            </button>
             <Link href="/list">
               <button className="mainColor navHover px-3 py-2 rounded">
                 {t("list_your_property")}
               </button>
             </Link>
-            <Link href="/SignRegist">
-              <button className="bg-white text-blue-700 text-sm hover:bg-blue-100 px-3 py-2 rounded border-blue-900 font-medium">
-                {t("register")}
-              </button>
-            </Link>
+
+            {/* Check if the user is logged in */}
             {email ? (
-              <button onClick={logout} className="bg-white text-blue-700 text-sm hover:bg-blue-100 px-3 py-2 rounded border-blue-900 font-medium">
-                
-                 {t("logout")}
-              </button>
+              <div className="relative inline-block text-left">
+                <Avatar
+                  sx={{ }}
+                  alt="User"
+                  src="https://q-xx.bstatic.com/backend_static/common/img/header/avatar.png"
+                  onClick={toggleDropdown}
+                  className="cursor-pointer"
+                />
+
+                {isDropdownOpen && (
+                  <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                    <div className="py-1">
+                      <a
+                        href="#"
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      >
+                        {/* <FontAwesomeIcon icon="fa-solid fa-user" /> */}
+                        Profile
+                      </a>
+                      <a
+                        href="#"
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      >
+                        {/* <FontAwesomeIcon icon="fa-solid fa-gear" /> */}
+                        Settings
+                      </a>
+                      <a
+                        href="#"
+                        onClick={logout}
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      >
+
+                        {t("logout")}
+                      </a>
+                    </div>
+                  </div>
+                )}
+              </div>
             ) : (
-              <Link href="/Signin">
-                <button className="bg-white text-blue-700 text-sm hover:bg-blue-100 px-3 py-2 rounded border-blue-900 font-medium">
-                  {t("sign_in")}
-                </button>
-              </Link>
+              <>
+                <Link href="/SignRegist">
+                  <button className="bg-white text-blue-700 text-sm hover:bg-blue-100 px-3 py-2 rounded border-blue-900 font-medium">
+                    {t("register")}
+                  </button>
+                </Link>
+                <Link href="/Signin">
+                  <button className="bg-white text-blue-700 text-sm hover:bg-blue-100 px-3 py-2 rounded border-blue-900 font-medium">
+                    {t("sign_in")}
+                  </button>
+                </Link>
+              </>
             )}
           </div>
 
@@ -122,9 +162,7 @@ function Navbar() {
               </button>
               <div className="flex flex-col items-start justify-start space-y-4 h-full p-6 mt-10">
                 <h1 className="text-2xl font-bold">{t("more")}</h1>
-                <button className="px-3 py-2 rounded">
-                  EGP {t("currency")}
-                </button>
+                <button className="px-3 py-2 rounded">EGP {t("currency")}</button>
                 <button
                   className="px-3 py-2 rounded flex items-center space-x-2"
                   onClick={() => setIsLanguageModalOpen(true)}
@@ -152,7 +190,6 @@ function Navbar() {
         )}
       </AnimatePresence>
 
-      {/* Language Modal */}
       <AnimatePresence>
         {isLanguageModalOpen && (
           <motion.div
