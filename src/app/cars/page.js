@@ -70,10 +70,11 @@ function Cars() {
         title="Car rentals for any kind of trip"
         description="Great cars at great prices from the biggest rental companies"
       />
-      <div className=" -mt-6 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-48 mb-4">
+        <div className=" -mt-6 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-48 mb-4">
         <SearchBar />
       </div>
       <section className="flex justify-start items-start flex-col px-4 sm:px-8 md:px-16 lg:px-24 xl:px-48 mb-4">
+
         <form className="flex justify-start mx-1">
           <div className="flex m-5 grid grid-cols-2 ">
             <div className=" flex gap-x-2 ">
@@ -117,7 +118,7 @@ function Cars() {
               className="imgg"
               src={phot8}
               alt="My Image"
-              width={120}
+              width={100}
               height={100}
             />
             <p className="font">Thrifty</p>
@@ -127,7 +128,7 @@ function Cars() {
               className="imgg"
               src={phot9}
               alt="My Image"
-              width={110}
+              width={100}
               height={100}
             />
             <p className="font">Enterprise</p>
@@ -138,7 +139,7 @@ function Cars() {
               className="imgg"
               src={phot7}
               alt="My Image"
-              width={110}
+              width={100}
               height={100}
             />
             <p className="font">National</p>
@@ -149,7 +150,7 @@ function Cars() {
               className="imgg"
               src={phot6}
               alt="My Image"
-              width={110}
+              width={100}
               height={100}
             />
             <p className="font">Surprice</p>
@@ -160,7 +161,7 @@ function Cars() {
               className="imgg"
               src={phot5}
               alt="My Image"
-              width={110}
+              width={100}
               height={100}
             />
             <p className="font">Avis</p>
@@ -171,7 +172,7 @@ function Cars() {
               className="imgg"
               src={phot4}
               alt="My Image"
-              width={110}
+              width={100}
               height={100}
             />
             <p className="font">Caldera</p>
@@ -182,7 +183,7 @@ function Cars() {
               className="imgg"
               src={phot3}
               alt="My Image"
-              width={110}
+              width={100}
               height={100}
             />
             <p className="font">SK Rent</p>
@@ -193,7 +194,7 @@ function Cars() {
               className="imgg"
               src={phot1}
               alt="My Image"
-              width={110}
+              width={100}
               height={100}
             />
             <p className="font">Enterprise</p>
@@ -204,7 +205,7 @@ function Cars() {
               className="imgg"
               src={phot2}
               alt="My Image"
-              width={120}
+              width={100}
               height={100}
             />
             <p className="font">budget</p>
@@ -220,7 +221,7 @@ function Cars() {
             <Alert className="flex ">
               <div>
                 <AlertTitle className="Signin">Sign in, save money</AlertTitle>
-                <AlertDescription className="Save_10">
+                <AlertDescription className="Save_10 ">
                   Save 10% on select rental cars – just look for the blue Genius
                   label
                 </AlertDescription>
@@ -235,7 +236,7 @@ function Cars() {
                 <Image
                   src={GeniusGenericGiftBox}
                   alt="My Image"
-                  width={100}
+                  width={90}
                   height={90}
                 />
               </div>
@@ -247,26 +248,14 @@ function Cars() {
       <section className="bg-gray-100 flex justify-start items-start flex-col px-4 sm:px-8 md:px-16 lg:px-24 xl:px-48 mb-4">
         <div className=" flex m-6">
           <div className=" flex mt-5 mx-4 ">
-            <Image
-              src={phot33}
-              width={40}
-              height={40}
-              className="pt-4"
-              alt="My Image"
-            />
+            <Image src={phot33} width={40} height={40} className="pt-4" />
             <div>
               <h6 className="Sign">We’re here for you</h6>
               <p className="phot33">Customer support in over 30 languages</p>
             </div>
           </div>
           <div className=" flex mt-5 mx-4">
-            <Image
-              src={phot333}
-              width={40}
-              height={40}
-              className="pt-4"
-              alt="My Image"
-            />
+            <Image src={phot333} width={40} height={40} className="pt-4" />
 
             <div>
               <h6 className="Sign">Free cancellation</h6>
@@ -276,13 +265,7 @@ function Cars() {
             </div>
           </div>
           <div className=" flex mt-5 mx-4">
-            <Image
-              src={phot3333}
-              width={80}
-              height={50}
-              className="pt-4"
-              alt="My Image"
-            />
+            <Image src={phot3333} width={80} height={50} className="pt-4" />
 
             <div>
               <h6 className="Sign">5 million+ reviews</h6>
@@ -297,91 +280,82 @@ function Cars() {
           <h4 className="Popular">Popular car hire brands</h4>
         </div>
 
-        <div className="Accordion grid grid-cols-3 gap-4 p-4 ">
+        <div className="Accordion grid grid-cols-3 gap-6 p-4 ">
           <Accordion type="single" collapsible className=" Accordion1 ">
             <AccordionItem value="item-1 ">
               <AccordionTrigger className="Sign">
                 How much does it cost to rent a car in Egypt for a week?
               </AccordionTrigger>
-              <AccordionContent className="Save_10">
+              <AccordionContent >
                 Yes. It adheres to the WAI-ARIA design pattern.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2 ">
               <AccordionTrigger className="Sign">
-                How much does it cost to rent a car in Egypt for a week?
-              </AccordionTrigger>
-              <AccordionContent className="Save_10">
-                Yes. It adheres to the WAI-ARIA design pattern.
+              How much does it cost to rent a car in Egypt for a month?              </AccordionTrigger>
+              <AccordionContent>
+                 it will cost you around EGP 66,573 for a month on our site.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-3 ">
               <AccordionTrigger className="Sign">
-                How much does it cost to rent a car in Egypt for a week?
-              </AccordionTrigger>
-              <AccordionContent className="Save_10">
-                Yes. It adheres to the WAI-ARIA design pattern.
+              Which car do people usually rent in Egypt?              </AccordionTrigger>
+              <AccordionContent>
+              Medium is the most popular car group to rent in Egypt among our users, followed by small and large.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-4 ">
               <AccordionTrigger className="Sign">
-                How much does it cost to rent a car in Egypt for a week?
-              </AccordionTrigger>
-              <AccordionContent className="Save_10">
-                Yes. It adheres to the WAI-ARIA design pattern.
+              How much does it cost to rent Medium car in Egypt?              </AccordionTrigger>
+              <AccordionContent>
+              On average, renting Medium car in Egypt costs EGP 1,928 
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-5 ">
               <AccordionTrigger className="Sign">
-                How much does it cost to rent a car in Egypt for a week?
-              </AccordionTrigger>
-              <AccordionContent className="Save_10">
-                Yes. It adheres to the WAI-ARIA design pattern.
+              How much does it cost to rent Small car in Egypt?              </AccordionTrigger>
+              <AccordionContent >
+              On average, renting Small car in Egypt costs EGP 2,072 
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-6 ">
               <AccordionTrigger className="Sign">
-                How much does it cost to rent a car in Egypt for a week?
-              </AccordionTrigger>
-              <AccordionContent className="Save_10">
-                Yes. It adheres to the WAI-ARIA design pattern.
+              How much does it cost to rent Large car in Egypt?              </AccordionTrigger>
+              <AccordionContent >
+              On average, renting Large car in Egypt costs EGP 1,877 
               </AccordionContent>
             </AccordionItem>
           </Accordion>
           <Accordion
             type="single"
             collapsible
-            className="w-full Accordion1 mx-16 "
+            className="w-full Accordion1 ms-36 "
           >
             <AccordionItem value="item-7 ">
               <AccordionTrigger className="Sign">
-                How much does it cost to rent a car in Egypt for a week?
-              </AccordionTrigger>
-              <AccordionContent className="Save_10">
-                Yes. It adheres to the WAI-ARIA design pattern.
-              </AccordionContent>
+              Which companies offer the cheapest car rates in Egypt?              </AccordionTrigger>
+              <AccordionContent >
+              In the past 6 months, 15 rental companies were offering the cheapest rates for Medium car on our site:
+            </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-8 ">
               <AccordionTrigger className="Sign">
-                How much does it cost to rent a car in Egypt for a week?
-              </AccordionTrigger>
-              <AccordionContent className="Save_10">
-                Yes. It adheres to the WAI-ARIA design pattern.
-              </AccordionContent>
+              Which pick-up locations in Egypt are the most popular?              </AccordionTrigger>
+              <AccordionContent >
+              Our users often pick up their car in these locations:              </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-9 ">
               <AccordionTrigger className="Sign">
-                How much does it cost to rent a car in Egypt for a week?
+              How far in advance should I book the car rental in Egypt?
               </AccordionTrigger>
-              <AccordionContent className="Save_10">
-                Yes. It adheres to the WAI-ARIA design pattern.
-              </AccordionContent>
+              <AccordionContent>
+              23% of our customers usually book a car last-minute for an average price of EGP 2,133 per day. But the cheapest time to book is 2 weeks ahead of your trip, for an average price of EGP 2,093 per day.              </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-10 ">
               <AccordionTrigger className="Sign">
                 How much does it cost to rent a car in Egypt for a week?
               </AccordionTrigger>
-              <AccordionContent className="Save_10">
+              <AccordionContent >
                 Yes. It adheres to the WAI-ARIA design pattern.
               </AccordionContent>
             </AccordionItem>
@@ -389,17 +363,16 @@ function Cars() {
               <AccordionTrigger className="Sign">
                 How much does it cost to rent a car in Egypt for a week?
               </AccordionTrigger>
-              <AccordionContent className="Save_10">
+              <AccordionContent >
                 Yes. It adheres to the WAI-ARIA design pattern.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-12 ">
               <AccordionTrigger className="Sign">
-                How much does it cost to rent a car in Egypt for a week?
-              </AccordionTrigger>
-              <AccordionContent className="Save_10">
-                Yes. It adheres to the WAI-ARIA design pattern.
-              </AccordionContent>
+              What do I need to rent a car?
+                            </AccordionTrigger>
+              <AccordionContent>
+              When you’re booking the car, you just need a debit or credit card.              </AccordionContent>
             </AccordionItem>
           </Accordion>
         </div>
@@ -418,9 +391,7 @@ function Cars() {
               <button
                 key={key}
                 onClick={() => setCategory(key)}
-                className={`button-category ${
-                  category === key ? "active" : ""
-                }`}
+                className={`button-category ${category === key ? 'active' : ''}`}
               >
                 {key}
               </button>
@@ -428,17 +399,18 @@ function Cars() {
           </div>
           <div className="item-container">
             {data[category].map((item) => (
-              <div key={item.name} className="item col-4 mt-5">
+              <div key={item.name} className="item  mt-5">
                 <Image
                   src={item.imge}
                   width={70}
                   height={90}
                   className="pt-4"
-                  alt={item.name}
                 />
                 <div>
                   <h3 className="Sign">{item.name}</h3>
-                  <p className="Save_10">{item.locations} car hire locations</p>
+                  <p className="Save_10">
+                    {item.locations} car hire locations
+                  </p>
                   <p className="Save_10">
                     Average price of EGP {item.price.toFixed(5)} per day
                   </p>
